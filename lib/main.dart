@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:donut_app_2b_delgado/pages/home_page.dart';
+import 'package:donut_app_2b_luis_vera/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());

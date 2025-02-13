@@ -1,4 +1,4 @@
-import 'package:donut_app_2b_delgado/utils/my_tab.dart';
+import 'package:donut_app_2b_luis_vera/utils/my_tab.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

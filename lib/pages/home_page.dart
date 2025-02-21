@@ -45,35 +45,39 @@ class _HomePageState extends State<HomePage> {
           ],
        
         ),
-        body:Column(children:[
-          //Texto principal
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
-            child: Row(
-              children: [
-                Text("I want to ", style: TextStyle(fontSize: 32)),
-                Text("Eat", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, decoration: TextDecoration.underline))//Tamañ
-              ],
-            ),
-          ),
-      
-          //TabBar (Barra de pestañas)
-          TabBar(tabs: myTabs),
-          //TabBarView (Contenido de las pestañas)
-          Expanded(
-            child: TabBarView(children: [
-              DonutTab(),
-              BurgerTab(),
-              SmoothieTab(),
-              PancakesTab(),
-              PizzaTab()
-            ]),
-          ),
-
-
-          //Carrito
-        ],)
+        body:Column(children:newMethod,)
       ),
     );
+  }
+
+  List<Widget> get newMethod {
+    return [
+        //Texto principal
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
+          child: Row(
+            children: [
+              Text("I want to ", style: TextStyle(fontSize: 32)),
+              Text("Eat", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, decoration: TextDecoration.underline))//Tamañ
+            ],
+          ),
+        ),
+    
+        //TabBar (Barra de pestañas)
+        TabBar(tabs: myTabs),
+        //TabBarView (Contenido de las pestañas)
+        Expanded(
+          child: TabBarView(children: [
+            DonutTab(),
+            BurgerTab(),
+            SmoothieTab(),
+            PancakesTab(),
+            PizzaTab()
+          ]),
+        ),
+
+
+        //Carrito
+      ];
   }
 } 

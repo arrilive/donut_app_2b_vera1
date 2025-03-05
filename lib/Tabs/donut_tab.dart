@@ -1,3 +1,4 @@
+import 'package:donut_app_2b_luis_vera/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
@@ -23,7 +24,8 @@ class DonutTab extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           // Número de columnas
           crossAxisCount: 2,
-        ),
+          //Relación de aspecto (proporción)
+          childAspectRatio: 1/1.5),
         itemBuilder: (context, index) {
           return DonutTile(
             donutFlavor: donutsOnSale[index][0],
@@ -33,49 +35,5 @@ class DonutTab extends StatelessWidget {
           );
         },
       );
-  }
-}
-
-class DonutTile extends StatelessWidget {
-  final String donutFlavor;
-  final String donutPrice;
-  final Color donutColor;
-  final String imageName;
-
-  const DonutTile({
-    super.key,
-    required this.donutFlavor,
-    required this.donutPrice,
-    required this.donutColor,
-    required this.imageName,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: donutColor.withOpacity(0.7),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(imageName, height: 80, fit: BoxFit.cover),
-            const SizedBox(height: 10),
-            Text(
-              donutFlavor,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              "\$$donutPrice",
-              style: const TextStyle(fontSize: 14, color: Colors.white70),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

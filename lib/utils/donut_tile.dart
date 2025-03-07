@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
  
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
+  final String donutStore;
   final String donutPrice;
   final dynamic donutColor;
   final String imageName;
  
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, this.donutColor, required this.imageName});
+  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName});
  
   @override
   Widget build(BuildContext context) {
@@ -51,10 +52,35 @@ class DonutTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               child: Image.asset(imageName),
-            )
+            ),
             //DonutText
- 
-            //LoveIcon+AddButton 
+            Text(donutFlavor, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            //Para tener espacio entre el texto y el boton
+            const SizedBox(
+              height: 4,
+            ),
+            //DonutStore
+              Text(donutStore, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
+            
+            //LoveIcon + AddButton 
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.favorite_border,
+                  color: Colors.pink[400],
+                  ),
+                  const Text(
+                    "Add",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline),
+                    ),
+                ],
+              ),
+              )
           ],
         )
       ),

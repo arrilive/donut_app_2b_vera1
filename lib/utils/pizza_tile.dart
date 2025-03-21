@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
- 
+
 class PizzaTile extends StatelessWidget {
   final String pizzaFlavor;
   final String pizzaPrice;
-  final dynamic pizza;
+  final MaterialColor pizza;
   final String imageName;
   final String pizzaStore;
- 
-  const PizzaTile({super.key, required this.pizzaFlavor, required this.pizzaStore, required this.pizzaPrice, this.pizza, required this.imageName});
- 
+  final Function(String, double) addToCart;
+
+  const PizzaTile({super.key, required this.pizzaFlavor, required this.pizzaStore, required this.pizzaPrice, required this.pizza, required this.imageName, required this.addToCart});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,7 @@ class PizzaTile extends StatelessWidget {
             //PriceTag
             Row(
               //Alinea a la derecha
- 
+
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
@@ -34,13 +35,13 @@ class PizzaTile extends StatelessWidget {
                   ),
                   padding:
                   const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 8, 
                     horizontal:18
                   ),
                   child:Text(
-                    '\$$pizzaPrice',
+                    '\$$pizzaPrice', 
                     style: TextStyle(
-                      fontWeight:FontWeight.bold,
+                      fontWeight:FontWeight.bold, 
                       fontSize: 18,
                       color: pizza[800]
                     )
@@ -76,22 +77,26 @@ class PizzaTile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite_border,
-                  color: Colors.pink[400],
-                  ),
-                  const Text(
+                  Icon(Icons.favorite_border, color: Colors.pink[400]),
+                  GestureDetector(
+                    onTap: () {
+                      // Agregar al carrito
+                      addToCart(pizzaFlavor, double.parse(pizzaPrice));
+                    },
+                  child: const Text(
                     "Add",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                     ),
+                  )
                 ],
-              ),)
+              ),
+            )
           ],
-          )
         )
-      );
+      )
+    );
   }
 }
- 

@@ -61,6 +61,46 @@ flutter:
   assets:
   - lib/icons/
   - lib/images/
+  - lib/images/livelypancake.png
+  - lib/images/lovedonut.png
+  - lib/images/lovelypancake.png
+  - lib/images/lovepizza.png
+  - lib/images/mangosmoothie.png
+  - lib/images/mexicanpizza.png
+  - lib/images/mintsmoothie.png
+  - lib/images/mixpizza.png
+  - lib/images/peperonipizza.png
+  - lib/images/SabroBurger.png
+  - lib/images/secretsmoothie.png
+  - lib/images/simplepancake.png
+  - lib/images/slicepizza.png
+  - lib/images/strawberry_donut.png
+  - lib/images/strawberrysmoothie.png
+  - lib/images/straweberrypancake.png
+  - lib/images/threedonut.png
+  - lib/images/watermelonsmoothie.png
+  - lib/images/AjonjoliBurger.png
+  - lib/images/ameicansmoothie.png
+  - lib/images/AmericanBurger.png
+  - lib/images/Basic.png
+  - lib/images/basicpizza.png
+  - lib/images/blackberrypancake.png
+  - lib/images/BurgerAndFries.png
+  - lib/images/butterpancake.png
+  - lib/images/CaptainBurger.png
+  - lib/images/cherrypancake.png
+  - lib/images/chessepizza.png
+  - lib/images/chocolate_donut.png
+  - lib/images/cocosmoothie.png
+  - lib/images/ComboBurger.png
+  - lib/images/dirtytpancake.png
+  - lib/images/donutwithcoffee.png
+  - lib/images/gasoline.png
+  - lib/images/grape_donut.png
+  - lib/images/housepancake.png
+  - lib/images/icecream_donut.png
+  - lib/images/italianpizza.png
+  - lib/images/LargeBurger.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

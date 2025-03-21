@@ -2,44 +2,45 @@ import 'package:donut_app_2b_luis_vera/utils/smoothie_tile.dart';
 import 'package:flutter/material.dart';
 
 class SmoothieTab extends StatelessWidget {
-  // Lista de donas
-  final List smoothiesOnSale = [
-    // [smoothieFlavor, smoothieStore, smoothiePrice, smoothieColor, imageName]
-    ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/icecream_smoothie.png"],
-    ["Strawberry", "Dunkin smoothies", "45", Colors.red, "lib/images/strawberry_smoothie.png"],
-    ["Grape Ape", "Costco", "84", Colors.purple, "lib/images/grape_smoothie.png"],
-    ["Choco", "Walmart", "95", Colors.brown, "lib/images/chocolate_smoothie.png"],
-    ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/icecream_smoothie.png"],
-    ["Strawberry", "Dunkin smoothies", "45", Colors.red, "lib/images/strawberry_smoothie.png"],
-    ["Grape Ape", "Costco", "84", Colors.purple, "lib/images/grape_smoothie.png"],
-    ["Choco", "Walmart", "95", Colors.brown, "lib/images/chocolate_smoothie.png"],
-  ];
-  
-  SmoothieTab({super.key});
+  final List smoothieOnSale = [
+    // [smoothie, smoothiePrice, smoothieColor, imageName],
+     ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/ameicansmoothie.png"],
+     ["Strawberry","Dunkin smoothies","45", Colors.red,"lib/images/cocosmoothie.png"],
+     ["Grape","Costco","84", Colors.purple,"lib/images/gasoline.png"],
+     ["Choco","Walmart","95", Colors.brown, 'lib/images/mangosmoothie.png'],
+     ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/mintsmoothie.png"],
+     ["Strawberry","Dunkin pizzas","45", Colors.red,"lib/images/secretsmoothie.png"],
+     ["Grape","Costco","84", Colors.purple,"lib/images/strawberrysmoothie.png"],
+     ["Choco","Walmart","95", Colors.brown, 'lib/images/watermelonsmoothie.png'],
+   ];
+  final Function(String, double) addToCart;
+
+  SmoothieTab({super.key, required this.addToCart});
 
   @override
-  Widget build(BuildContext context) {
-    //Cuadrícula
-    return GridView.builder(
-      //Cuántos elementos hay en nuestra lista
-        itemCount: smoothiesOnSale.length,
-        padding: const EdgeInsets.all(8.0),
-        //Organiza los elementos en una cuadricula
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          // Número de columnas
-          crossAxisCount: 2,
-          //Relación de aspecto (proporción)
-          childAspectRatio: 1/1.5),
-        itemBuilder: (context, index) {
-          return SmoothieTile(
-            smoothieFlavor: smoothiesOnSale[index][0],
-            smoothieStore: smoothiesOnSale[index][1],
-            smoothiePrice: smoothiesOnSale[index][2],
-            smoothieColor: smoothiesOnSale[index][3],
-            imageName: smoothiesOnSale[index][4],
-            
+   Widget build(BuildContext context) {
+    //Acomodar elementos en Cuadricula
+     return GridView.builder(
+    //Eementos en nuestra lista
+     itemCount: smoothieOnSale.length,
+     padding: const EdgeInsets.all(8.0),
+     //Organiza como distribuir
+     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+       //numero de columnas
+       crossAxisCount: 2,
+       childAspectRatio: 1/1.5
+       ),
+       itemBuilder: (context, index){
+          var smoothieTile = SmoothieTile(
+            smoothieFlavor: smoothieOnSale[index][0],
+            smoothieStore: smoothieOnSale[index][1],
+            smoothiePrice: smoothieOnSale[index][2],
+            imageName: smoothieOnSale[index][4],
+            smoothie: smoothieOnSale[index][3],
+            addToCart: addToCart,
           );
-        },
+          return smoothieTile;
+        }
       );
   }
 }

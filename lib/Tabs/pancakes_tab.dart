@@ -1,20 +1,22 @@
 import 'package:donut_app_2b_luis_vera/utils/pancakes_tile.dart';
 import 'package:flutter/material.dart';
- 
+
 class PancakesTab extends StatelessWidget {
   final List pancakesOnSale = [
     // [pancakes, pancakesPrice, pancakesColor, imageName],
-     ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/icecream_pancakes.png"],
-     ["Strawberry","Dunkin pancakess","45", Colors.red,"lib/images/strawberry_pancakes.png"],
-     ["Grape","Costco","84", Colors.purple,"lib/images/grape_pancakes.png"],
-     ["Choco","Walmart","95", Colors.brown, 'lib/images/chocolate_pancakes.png'],
-     ["Ice Cream","Krispy Kreme", "36", Colors.blue, "lib/images/icecream_pancakes.png"],
-     ["Strawberry","Dunkin pancakess","45", Colors.red,"lib/images/strawberry_pancakes.png"],
-     ["Grape","Costco","84", Colors.purple,"lib/images/grape_pancakes.png"],
-     ["Choco","Walmart","95", Colors.brown, 'lib/images/chocolate_pancakes.png'],
+     ["BlackBerry","Vips", "36", Colors.blue, "lib/images/blackberrypancake.png"],
+     ["Butter","Dunkin","45", Colors.red,"lib/images/butterpancake.png"],
+     ["Cherry","IHope","84", Colors.purple,"lib/images/cherrypancake.png"],
+     ["Dirty","Walmart","95", Colors.brown, 'lib/images/dirtytpancake.png'],
+     ["House","Vips", "36", Colors.blue, "lib/images/housepancake.png"],
+     ["Strawberry","Dunkin","45", Colors.red,"lib/images/straweberrypancake.png"],
+     ["Lovely","IHope","84", Colors.purple,"lib/images/lovelypancake.png"],
+     ["Simple","Walmart","95", Colors.brown, 'lib/images/simplepancake.png'],    
    ];
-  PancakesTab({super.key});
- 
+  final Function(String, double) addToCart;
+
+  PancakesTab({super.key, required this.addToCart});
+
   @override
    Widget build(BuildContext context) {
     //Acomodar elementos en Cuadricula
@@ -30,16 +32,16 @@ class PancakesTab extends StatelessWidget {
        ),
        itemBuilder: (context, index){
           var pancakesTile = PancakesTile(
-            pancakes: pancakesOnSale[index][0],
+            pancakesFlavor: pancakesOnSale[index][0],
             pancakesStore: pancakesOnSale[index][1],
-            pancakesPrice:pancakesOnSale[index][2],
-            imageName:pancakesOnSale[index][3],
-            pancakesFlavor: pancakesOnSale[index][4],
-           
+            pancakesPrice: pancakesOnSale[index][2],
+            imageName: pancakesOnSale[index][4],
+            pancakes: pancakesOnSale[index][3],
+            addToCart: addToCart,
+            
           );
           return pancakesTile;
         }
       );
   }
 }
- 

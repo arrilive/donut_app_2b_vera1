@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
- 
+
 class SmoothieTile extends StatelessWidget {
   final String smoothieFlavor;
-  final String smoothieStore;
   final String smoothiePrice;
-  final dynamic smoothieColor;
+  final MaterialColor smoothie;
   final String imageName;
- 
-  const SmoothieTile({super.key, required this.smoothieFlavor, required this.smoothieStore, required this.smoothiePrice, this.smoothieColor, required this.imageName});
- 
+  final String smoothieStore;
+  final Function(String, double) addToCart;
+
+  const SmoothieTile({super.key, required this.smoothieFlavor, required this.smoothieStore, required this.smoothiePrice, required this.smoothie, required this.imageName, required this.addToCart});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
-          color:smoothieColor[100], borderRadius: BorderRadius.circular(24)),
+          color:smoothie[100], borderRadius: BorderRadius.circular(24)),
         child: Column(
           children: [
             //PriceTag
             Row(
               //Alinea a la derecha
- 
+
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: smoothieColor[200],
+                    color: smoothie[200],
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24)
@@ -34,15 +35,15 @@ class SmoothieTile extends StatelessWidget {
                   ),
                   padding:
                   const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 8, 
                     horizontal:18
                   ),
                   child:Text(
-                    '\$$smoothiePrice',
+                    '\$$smoothiePrice', 
                     style: TextStyle(
-                    fontWeight:FontWeight.bold, 
-                    fontSize: 18,
-                    color:smoothieColor[800]
+                      fontWeight:FontWeight.bold, 
+                      fontSize: 18,
+                      color: smoothie[800]
                     )
                   )
                 )
@@ -54,36 +55,48 @@ class SmoothieTile extends StatelessWidget {
               child: Image.asset(imageName),
             ),
             //smoothieText
-            Text(smoothieFlavor, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            //Para tener espacio entre el texto y el boton
-            const SizedBox(
+            Text(smoothieFlavor, style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20)
+            ),
+            SizedBox(
               height: 4,
             ),
-            //smoothieStore
-              Text(smoothieStore, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
-            
-            //LoveIcon + AddButton 
+            //TODO: agregar texto de la tienda
+            Text(smoothieStore, style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 17,
+              color: Colors.blueGrey)
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            //LoveIcon+AddButton
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite_border,
-                  color: Colors.pink[400],
-                  ),
-                  const Text(
+                  Icon(Icons.favorite_border, color: Colors.pink[400]),
+                  GestureDetector(
+                    onTap: () {
+                      // Agregar al carrito
+                      addToCart(smoothieFlavor, double.parse(smoothiePrice));
+                    },
+                  child: const Text(
                     "Add",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                     ),
+                  )
                 ],
               ),
-              )
+            )
           ],
         )
-      ),
+      )
     );
   }
 }

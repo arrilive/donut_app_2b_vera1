@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
- 
+
 class DonutTile extends StatelessWidget {
   final String donutFlavor;
-  final String donutStore;
   final String donutPrice;
   final dynamic donutColor;
   final String imageName;
- 
-  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName});
- 
+  final String donutStore;
+  final Function(String, double) addToCart;
+
+  const DonutTile({super.key, required this.donutFlavor, required this.donutStore, required this.donutPrice, this.donutColor, required this.imageName, required this.addToCart});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +22,7 @@ class DonutTile extends StatelessWidget {
             //PriceTag
             Row(
               //Alinea a la derecha
- 
+
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
@@ -34,15 +35,15 @@ class DonutTile extends StatelessWidget {
                   ),
                   padding:
                   const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 8, 
                     horizontal:18
                   ),
                   child:Text(
-                    '\$$donutPrice',
+                    '\$$donutPrice', 
                     style: TextStyle(
-                    fontWeight:FontWeight.bold, 
-                    fontSize: 18,
-                    color:donutColor[800]
+                      fontWeight:FontWeight.bold, 
+                      fontSize: 18,
+                      color: donutColor[800]
                     )
                   )
                 )
@@ -54,36 +55,48 @@ class DonutTile extends StatelessWidget {
               child: Image.asset(imageName),
             ),
             //DonutText
-            Text(donutFlavor, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            //Para tener espacio entre el texto y el boton
-            const SizedBox(
+            Text(donutFlavor, style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20)
+            ),
+            SizedBox(
               height: 4,
             ),
-            //DonutStore
-              Text(donutStore, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
-            
-            //LoveIcon + AddButton 
+            //TODO: agregar texto de la tienda
+            Text(donutStore, style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 17,
+              color: Colors.blueGrey)
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            //LoveIcon+AddButton
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite_border,
-                  color: Colors.pink[400],
-                  ),
-                  const Text(
+                  Icon(Icons.favorite_border, color: Colors.pink[400]),
+                  GestureDetector(
+                    onTap: () {
+                      // Agregar al carrito
+                      addToCart(donutFlavor, double.parse(donutPrice));
+                    },
+                  child: const Text(
                     "Add",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                     ),
+                  )
                 ],
               ),
-              )
+            )
           ],
         )
-      ),
+      )
     );
   }
 }

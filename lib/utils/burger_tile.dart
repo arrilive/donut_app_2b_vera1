@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
- 
+
 class BurgerTile extends StatelessWidget {
   final String burgerFlavor;
-  final String burgerStore;
   final String burgerPrice;
-  final dynamic burgerColor;
+  final MaterialColor burger;
   final String imageName;
- 
-const BurgerTile({super.key, required this.burgerFlavor, required this.burgerStore, required this.burgerPrice, this.burgerColor, required this.imageName});
- 
-  @override
+  final String burgerStore;
+  final Function(String, double) addToCart;
+
+  const BurgerTile({super.key, required this.burgerFlavor, required this.burgerStore, required this.burgerPrice, required this.imageName, required this.burger, required this.addToCart});
+
+  @override 
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12.0),
       child: Container(
         decoration: BoxDecoration(
-          color:burgerColor[100], borderRadius: BorderRadius.circular(24)),
+          color:burger[100], borderRadius: BorderRadius.circular(24)),
         child: Column(
           children: [
             //PriceTag
             Row(
               //Alinea a la derecha
- 
+
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: burgerColor[200],
+                    color: burger[200],
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(24),
                       bottomLeft: Radius.circular(24)
@@ -34,15 +35,15 @@ const BurgerTile({super.key, required this.burgerFlavor, required this.burgerSto
                   ),
                   padding:
                   const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 8, 
                     horizontal:18
                   ),
                   child:Text(
-                    '\$$burgerPrice',
+                    '\$$burgerPrice', 
                     style: TextStyle(
-                    fontWeight:FontWeight.bold, 
-                    fontSize: 18,
-                    color:burgerColor[800]
+                      fontWeight:FontWeight.bold, 
+                      fontSize: 18,
+                      color: burger[800]
                     )
                   )
                 )
@@ -54,36 +55,48 @@ const BurgerTile({super.key, required this.burgerFlavor, required this.burgerSto
               child: Image.asset(imageName),
             ),
             //burgerText
-            Text(burgerFlavor, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            //Para tener espacio entre el texto y el boton
-            const SizedBox(
+            Text(burgerFlavor, style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20)
+            ),
+            SizedBox(
               height: 4,
             ),
-            //burgerStore
-              Text(burgerStore, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10)),
-            
-            //LoveIcon + AddButton 
+            //TODO: agregar texto de la tienda
+            Text(burgerStore, style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 17,
+              color: Colors.blueGrey)
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            //LoveIcon+AddButton
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite_border,
-                  color: Colors.pink[400],
-                  ),
-                  const Text(
+                  Icon(Icons.favorite_border, color: Colors.pink[400]),
+                  GestureDetector(
+                    onTap: () {
+                      // Agregar al carrito
+                      addToCart(burgerFlavor, double.parse(burgerPrice));
+                    },
+                  child: const Text(
                     "Add",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                     ),
+                  )
                 ],
               ),
-              )
+            )
           ],
         )
-      ),
+      )
     );
   }
 }

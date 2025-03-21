@@ -1,14 +1,16 @@
+
 import 'package:flutter/material.dart';
- 
+
 class PancakesTile extends StatelessWidget {
   final String pancakesFlavor;
   final String pancakesPrice;
-  final dynamic pancakes;
+  final MaterialColor pancakes;
   final String imageName;
   final String pancakesStore;
- 
-  const PancakesTile({super.key, required this.pancakesFlavor, required this.pancakesStore, required this.pancakesPrice, this.pancakes, required this.imageName});
- 
+  final Function(String, double) addToCart;
+
+  const PancakesTile({super.key, required this.pancakesFlavor, required this.pancakesStore, required this.pancakesPrice, required this.pancakes, required this.imageName, required this.addToCart});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,7 +23,7 @@ class PancakesTile extends StatelessWidget {
             //PriceTag
             Row(
               //Alinea a la derecha
- 
+
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
@@ -34,13 +36,13 @@ class PancakesTile extends StatelessWidget {
                   ),
                   padding:
                   const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 8, 
                     horizontal:18
                   ),
                   child:Text(
-                    '\$$pancakesPrice',
+                    '\$$pancakesPrice', 
                     style: TextStyle(
-                      fontWeight:FontWeight.bold,
+                      fontWeight:FontWeight.bold, 
                       fontSize: 18,
                       color: pancakes[800]
                     )
@@ -76,22 +78,26 @@ class PancakesTile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.favorite_border,
-                  color: Colors.pink[400],
-                  ),
-                  const Text(
+                  Icon(Icons.favorite_border, color: Colors.pink[400]),
+                  GestureDetector(
+                    onTap: () {
+                      // Agregar al carrito
+                      addToCart(pancakesFlavor, double.parse(pancakesPrice));
+                    },
+                  child: const Text(
                     "Add",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline),
                     ),
+                  )
                 ],
-              ),)
+              ),
+            )
           ],
-          )
         )
-      );
+      )
+    );
   }
 }
- 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:donut_app_2b_luis_vera/pages/home_page.dart';
+import 'auth/login_page.dart'; // 👈 Asegúrate de tener esta carpeta y archivo
 
 void main() {
   runApp(const MyApp());
@@ -8,17 +8,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Donut App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const LoginPage(), // 👈 Aquí empieza el login
     );
   }
 }
